@@ -16,10 +16,11 @@
 #     mysql -u root -p < /docker-entrypoint-initdb.d/createdb.sql
 #
 
-CREATE USER 'sou'@'%' IDENTIFIED WITH mysql_native_password BY 'teste';
+CREATE USER 'sou-dev'@'%' IDENTIFIED WITH mysql_native_password BY 'GfwY3527DWpGqBW';
+GRANT ALL PRIVILEGES ON *.* TO 'sou-dev'@'%';
 
-CREATE DATABASE IF NOT EXISTS `sou_development` COLLATE 'utf8_general_ci' ;
-GRANT ALL ON `sou_development`.* TO 'sou'@'%' ;
+CREATE DATABASE IF NOT EXISTS `sou_authentication` COLLATE 'utf8mb4_unicode_ci' ;
+GRANT ALL ON `sou_authentication`.* TO 'sou-dev'@'%' ;
 
 #CREATE DATABASE IF NOT EXISTS `dev_db_2` COLLATE 'utf8_general_ci' ;
 #GRANT ALL ON `dev_db_2`.* TO 'default'@'%' ;
