@@ -12,15 +12,20 @@ RUN if [ ${CHANGE_SOURCE} = true ]; then \
     sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories \
 ;fi
 
+# Add nginx-mod-http-shibboleth package and your dependencies: nginx, musl
+# Add addtional packages: vim, nano and mlocate
 RUN apk update \
     && apk upgrade \
     && apk add --no-cache bash \
     && adduser -D -H -u 1000 -s /bin/bash www-data \
-    && apk add musl \
+    && apk add musl vim nano mlocate \
     && apk add nginx-mod-http-shibboleth
 
 ARG PHP_UPSTREAM_CONTAINER=php-fpm
 ARG PHP_UPSTREAM_PORT=9000
+
+# Set Shibboleth load_module conf
+RUN echo 'load_module "modules/ngx_http_shibboleth_module.so";' > /etc/nginx/conf.d/http_shibboleth.conf
 
 # Set upstream conf and remove the default conf
 RUN echo "upstream php-upstream { server ${PHP_UPSTREAM_CONTAINER}:${PHP_UPSTREAM_PORT}; }" > /etc/nginx/conf.d/upstream.conf \
