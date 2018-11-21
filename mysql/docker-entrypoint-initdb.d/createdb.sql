@@ -9,6 +9,10 @@ CREATE DATABASE IF NOT EXISTS `sou_employment` COLLATE 'utf8mb4_unicode_ci' ;
 CREATE USER 'sou_employment'@'%' IDENTIFIED WITH mysql_native_password BY 'CCr1TnvJUi@e^19';
 GRANT ALL PRIVILEGES ON `sou_employment`.* TO 'sou_employment'@'%' ;
 
+CREATE DATABASE IF NOT EXISTS `sou_collaborator` COLLATE 'utf8mb4_unicode_ci' ;
+CREATE USER 'sou_collaborator'@'%' IDENTIFIED WITH mysql_native_password BY 'FRr1XMvJKi@e#76';
+GRANT ALL PRIVILEGES ON `sou_collaborator`.* TO 'sou_collaborator'@'%' ;
+
 CREATE DATABASE IF NOT EXISTS `sou_group` COLLATE 'utf8mb4_unicode_ci' ;
 CREATE USER 'sou_group'@'%' IDENTIFIED WITH mysql_native_password BY 'ivUL5nCkTe-Ca%e';
 GRANT ALL PRIVILEGES ON `sou_group`.* TO 'sou_group'@'%' ;
