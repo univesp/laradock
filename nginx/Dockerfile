@@ -24,9 +24,6 @@ RUN apk update \
 ARG PHP_UPSTREAM_CONTAINER=php-fpm
 ARG PHP_UPSTREAM_PORT=9000
 
-# Set Shibboleth load_module conf
-RUN echo 'load_module "modules/ngx_http_shibboleth_module.so";' > /etc/nginx/conf.d/http_shibboleth.conf
-
 # Set upstream conf and remove the default conf
 RUN echo "upstream php-upstream { server ${PHP_UPSTREAM_CONTAINER}:${PHP_UPSTREAM_PORT}; }" > /etc/nginx/conf.d/upstream.conf \
     && rm /etc/nginx/conf.d/default.conf
